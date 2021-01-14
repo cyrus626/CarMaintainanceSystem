@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CyrusDB" Class="CarMaintainanceSystemDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=HQIDDTS03OF0053\CYRUSSQL;Initial Catalog=CyrusDB;Persist Security Info=True;User ID=sa" SettingsObjectName="CarMaintainanceSystem.Properties.Settings" SettingsPropertyName="CyrusDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tblCustomer" Member="tblCustomers">
+    <Type Name="tblCustomer">
+      <Column Name="CarNo" Type="System.String" DbType="NVarChar(15) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Make" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblJobDetails" Member="tblJobDetails">
+    <Type Name="tblJobDetail">
+      <Column Name="CarNo" Type="System.String" DbType="NVarChar(15) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="JobDate" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="WorkerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="KMs" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Tuning" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Alignment" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Balancing" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Tires" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Weights" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OilChanged" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OilQty" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OilFilter" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GearOil" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GearOilQty" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Point" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Condenser" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Plug" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PlugQty" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FuelFilter" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AirFilter" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Remarks" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tblWorker_tblJobDetail" Member="tblWorker" ThisKey="WorkerId" OtherKey="WorkerId" Type="tblWorker" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblWorker" Member="tblWorkers">
+    <Type Name="tblWorker">
+      <Column Name="WorkerId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="tblWorker_tblJobDetail" Member="tblJobDetails" ThisKey="WorkerId" OtherKey="WorkerId" Type="tblJobDetail" />
+    </Type>
+  </Table>
+</Database>

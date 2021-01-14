@@ -1,0 +1,30 @@
+﻿<Window x:Class="CarMaintainanceSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarMaintainanceSystem"
+        mc:Ignorable="d"
+        Title="Customer Maintainance System" Height="450" Width="800" VerticalAlignment="Top" HorizontalAlignment="Center">
+    <StackPanel Background="SkyBlue">
+
+        <Menu x:Name="myMenu" FontSize="18" Height="35" Width="800" Visibility="Visible">
+            <Menu.Style>
+                <Style TargetType="Menu">
+                    <Setter Property="Background" Value="LightSkyBlue"/>
+                </Style>
+            </Menu.Style>
+            <Menu.BitmapEffect>
+                <DropShadowBitmapEffect/>
+            </Menu.BitmapEffect>
+            <MenuItem Header="Customer" IsCheckable="False" Name="customerForm" Click="customerForm_Click"/>
+            <MenuItem Header="Worker" IsCheckable="False" Name="workerForm" Click="workerForm_Click"/>
+            <MenuItem Header="Job Title" IsCheckable="False" Name="jobTitleForm" Click="jobTitleForm_Click"/>
+            <MenuItem Header="Report" IsCheckable="False" Name="reportForm" Click="reportForm_Click"/>
+            <MenuItem Header="Exit" IsCheckable="False" Name="exit" Click="exit_Click"/>
+        </Menu>
+
+        <TextBlock Text="Car Maintainace System" FontSize="50" Margin="60,180,60,180" Foreground="BlueViolet"/>
+
+    </StackPanel>
+</Window>

@@ -1,0 +1,39 @@
+﻿<Window x:Class="CarMaintainanceSystem.WorkerForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarMaintainanceSystem"
+        mc:Ignorable="d"
+        Title="Worker Form" Height="450" Width="800">
+    <Grid Background="SkyBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label FontWeight="Bold" FontSize="25" FontFamily="Arial" Margin="25">Click on Edit button to load the records</Label>
+        <DataGrid Margin="75, 75, 0, 12" Width="600" Height="250" Name="MainDataGrid" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                
+            </Grid.ColumnDefinitions>
+            
+            <Grid Grid.Column="0" Margin="15">
+                <Button Click="btnSave_Click" Name="btnSave" Width="75" Height="45"  FontSize="25" Content="Save" FontFamily="Microsoft Sans Serif"/>
+            </Grid>
+            <Grid Grid.Column="1" Margin="15">
+                <Button Click="btnEdit_Click" Name="btnEdit" Content="Edit" Width="75" Height="45"  FontSize="25" FontFamily="Microsoft Sans Serif"/>
+            </Grid>
+            <Grid Grid.Column="2" Margin="15">
+                <Button Name="btnCancel" Width="90" Height="45"  FontSize="25" FontFamily="Microsoft Sans Serif" Content="Cancel"/>
+            </Grid>
+            <Grid Grid.Column="3" Margin="15">
+                <Button Click="btnExit_Click" Name ="btnExit" Width="75" Height="45"  FontSize="25" FontFamily="Microsoft Sans Serif" Content="Exit"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
