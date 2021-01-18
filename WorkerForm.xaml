@@ -29,7 +29,7 @@
                 <Button Click="btnEdit_Click" Name="btnEdit" Content="Edit" Width="75" Height="45"  FontSize="25" FontFamily="Microsoft Sans Serif"/>
             </Grid>
             <Grid Grid.Column="2" Margin="15">
-                <Button Name="btnCancel" Width="90" Height="45"  FontSize="25" FontFamily="Microsoft Sans Serif" Content="Cancel"/>
+                <Button Click="btnCancel_Click" Name="btnCancel" Width="90" Height="45"  FontSize="25" FontFamily="Microsoft Sans Serif" Content="Cancel"/>
             </Grid>
             <Grid Grid.Column="3" Margin="15">
                 <Button Click="btnExit_Click" Name ="btnExit" Width="75" Height="45"  FontSize="25" FontFamily="Microsoft Sans Serif" Content="Exit"/>
