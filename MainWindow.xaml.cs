@@ -20,37 +20,42 @@ namespace CarMaintainanceSystem
     /// </summary>
     public partial class MainWindow : Window
     {
-        CarMaintainanceSystemDataContext dataContext;
+        //CarMaintainanceSystemDataContext dataContext;
         public MainWindow()
         {
             InitializeComponent();
-            string connectionString = ConfigurationManager.ConnectionStrings["CarMaintainanceSystem.Properties.Settings.CyrusDBConnectionString"].ConnectionString;
-            dataContext = new CarMaintainanceSystemDataContext(connectionString);
+            //string connectionString = ConfigurationManager.ConnectionStrings["CarMaintainanceSystem.Properties.Settings.CyrusDBConnectionString"].ConnectionString;
+            //dataContext = new CarMaintainanceSystemDataContext(connectionString);
         }
-
+        
+        //Opens workerForm
         private void workerForm_Click(object sender, RoutedEventArgs e)
         {
             WorkerForm workerForm = new WorkerForm();
             workerForm.ShowDialog();
         }
 
+        //Exit the app
         private void exit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
+        //Opens Report window
         private void reportForm_Click(object sender, RoutedEventArgs e)
         {
             ReportForm reportForm = new ReportForm();
             reportForm.ShowDialog();
         }
 
+        //Opens jobDetail window
         private void jobTitleForm_Click(object sender, RoutedEventArgs e)
         {
             JobDetails jobDetails = new JobDetails();
             jobDetails.ShowDialog();
         }
 
+        //Opens customerForm window
         private void customerForm_Click(object sender, RoutedEventArgs e)
         {
             CustomerForm customerForm = new CustomerForm();

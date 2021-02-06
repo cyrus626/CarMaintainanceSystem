@@ -8,9 +8,8 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace CarMaintainanceSystem
 {
@@ -19,10 +18,15 @@ namespace CarMaintainanceSystem
     /// </summary>
     public partial class JobDetails : Window
     {
+        SqlConnection sqlConnection;
         public JobDetails()
         {
             InitializeComponent();
+            string connectionString = ConfigurationManager.ConnectionStrings["CarMaintainanceSystem.Properties.Settings.CyrusDBConnectionString"].ConnectionString;
+            sqlConnection = new SqlConnection(connectionString);
         }
+
+
 
         private void editCarNO_PreviewLostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
@@ -31,7 +35,58 @@ namespace CarMaintainanceSystem
                 MessageBox.Show("Please specify the value for the car number", "Error in input");
                 editCarNO.Focus();
             }
+        }
 
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            ErrorChecker();
+
+            // Saving new data
+            try
+            {
+                //SQL query
+                string query = "insert into tblJobDetails(CarNo, JobDate, WorkerId" +
+                ", KMs, Tuning, Alignment, Balancing, Tires, Weights, OilChanged" +
+                ", OilQty, OilFilter, GearOil,GearOilQty, Point, Condenser, Plug, PlugQty" +
+                ", FuelFilter, AirFilter, Remarks)" +
+                "Values(@CarNo, @JobDate, @WorkerId" +
+                ", @KMs, @Tuning, @Alignment, @Balancing, @Tires, @Weights, @OilChanged" +
+                ", @OilQty, @OilFilter, @GearOil, @GearOilQty, @Point, @Condenser, @Plug, @PlugQty" +
+                ", @FuelFilter, @AirFilter, @Remarks)";
+                SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlConnection.Open();
+                sqlCommand.Parameters.AddWithValue("@CarNO", editCarNO.Text);
+                sqlCommand.Parameters.AddWithValue("@JobDate", dateTimePicker1.SelectedDate);
+                sqlCommand.Parameters.AddWithValue("@WorkerId", Convert.ToInt32(editName.Text));
+                sqlCommand.Parameters.AddWithValue("@KMs", Convert.ToInt32(editKMs.Text));
+                sqlCommand.Parameters.AddWithValue("@Tuning", Convert.ToInt32(editTuning.Text));
+                sqlCommand.Parameters.AddWithValue("@Alignment", Convert.ToInt32(editAlignment.Text));
+                sqlCommand.Parameters.AddWithValue("@Balancing", Convert.ToInt32(editBalancing.Text));
+                sqlCommand.Parameters.AddWithValue("@Tires", Convert.ToInt32(editTires.Text));
+                sqlCommand.Parameters.AddWithValue("@Weights", Convert.ToInt32(editWeights.Text));
+                sqlCommand.Parameters.AddWithValue("@OilChanged", Convert.ToInt32(editOilChanged.Text));
+                sqlCommand.Parameters.AddWithValue("@OilQty", Convert.ToInt32(editOilQty.Text));
+                sqlCommand.Parameters.AddWithValue("@OilFilter", Convert.ToInt32(editOilFilter.Text));
+                sqlCommand.Parameters.AddWithValue("@GearOil", Convert.ToInt32(editGearOil.Text));
+                sqlCommand.Parameters.AddWithValue("@GearOilQty", Convert.ToInt32(editGearOilQty.Text));
+                sqlCommand.Parameters.AddWithValue("@Point", Convert.ToInt32(editPoint.Text));
+                sqlCommand.Parameters.AddWithValue("@Condenser", Convert.ToInt32(editCondenser.Text));
+                sqlCommand.Parameters.AddWithValue("@Plug", Convert.ToInt32(editPlug.Text));
+                sqlCommand.Parameters.AddWithValue("@PlugQty", Convert.ToInt32(editPlugQty.Text));
+                sqlCommand.Parameters.AddWithValue("@FuelFilter", Convert.ToInt32(editFuelFilter.Text));
+                sqlCommand.Parameters.AddWithValue("@AirFilter", Convert.ToInt32(editAirFilter.Text));
+                sqlCommand.Parameters.AddWithValue("@Remarks", editRemarks.Text);
+                sqlCommand.ExecuteScalar();
+                MessageBox.Show("Data added Successfully", "Info");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Could not add to database");
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
         }
 
         private void editName_PreviewLostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
@@ -57,10 +112,10 @@ namespace CarMaintainanceSystem
                 MessageBox.Show("Please specify the value for the KMs", "Error in input");
                 editKMs.Focus();
             }
-
+            
         }
 
-        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        private void ErrorChecker()
         {
             if (editCarNO.Text.Length < 6)
             {
@@ -76,7 +131,7 @@ namespace CarMaintainanceSystem
                     editName.Focus();
                     return;
                 }
-                if (Convert.ToDateTime(dateTimePicker1) > DateTime.Today)
+                if (dateTimePicker1.SelectedDate > DateTime.Today)
                 {
                     MessageBox.Show("Please specify a valid date");
                     dateTimePicker1.Focus();
@@ -86,6 +141,57 @@ namespace CarMaintainanceSystem
             catch (Exception execption)
             {
                 MessageBox.Show(execption.Message);
+            }
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            ErrorChecker();
+
+            try
+            {
+                //SQL query
+                string query = "update tblJobDetails " +
+                    "set (CarNo = @CarNo, JobDate = @JobDate, WorkerId = @WorkerId" +
+                ", KMs = @KMs, Tuning = @Tuning, Alignment = @Alignment, Balancing = @Balancing, " +
+                "Tires = @Tires, Weights = @Weights, OilChanged = @OilChanged, OilQty = @OilQty, " +
+                "OilFilter = @OilFilter, GearOil = @GearOil, GearOilQty = @GearOilQty, " +
+                "Point = @Point, Condenser = @Condenser, Plug = @Plug, PlugQty = @PlugQty" +
+                ", FuelFilter = @FuelFilter, AirFilter = @AirFilter, Remarks = @Remarks)" +""
+                ;
+                SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlConnection.Open();
+                sqlCommand.Parameters.AddWithValue("@CarNO", editCarNO.Text);
+                sqlCommand.Parameters.AddWithValue("@JobDate", dateTimePicker1.SelectedDate);
+                sqlCommand.Parameters.AddWithValue("@WorkerId", Convert.ToInt32(editName.Text));
+                sqlCommand.Parameters.AddWithValue("@KMs", Convert.ToInt32(editKMs.Text));
+                sqlCommand.Parameters.AddWithValue("@Tuning", Convert.ToInt32(editTuning.Text));
+                sqlCommand.Parameters.AddWithValue("@Alignment", Convert.ToInt32(editAlignment.Text));
+                sqlCommand.Parameters.AddWithValue("@Balancing", Convert.ToInt32(editBalancing.Text));
+                sqlCommand.Parameters.AddWithValue("@Tires", Convert.ToInt32(editTires.Text));
+                sqlCommand.Parameters.AddWithValue("@Weights", Convert.ToInt32(editWeights.Text));
+                sqlCommand.Parameters.AddWithValue("@OilChanged", Convert.ToInt32(editOilChanged.Text));
+                sqlCommand.Parameters.AddWithValue("@OilQty", Convert.ToInt32(editOilQty.Text));
+                sqlCommand.Parameters.AddWithValue("@OilFilter", Convert.ToInt32(editOilFilter.Text));
+                sqlCommand.Parameters.AddWithValue("@GearOil", Convert.ToInt32(editGearOil.Text));
+                sqlCommand.Parameters.AddWithValue("@GearOilQty", Convert.ToInt32(editGearOilQty.Text));
+                sqlCommand.Parameters.AddWithValue("@Point", Convert.ToInt32(editPoint.Text));
+                sqlCommand.Parameters.AddWithValue("@Condenser", Convert.ToInt32(editCondenser.Text));
+                sqlCommand.Parameters.AddWithValue("@Plug", Convert.ToInt32(editPlug.Text));
+                sqlCommand.Parameters.AddWithValue("@PlugQty", Convert.ToInt32(editPlugQty.Text));
+                sqlCommand.Parameters.AddWithValue("@FuelFilter", Convert.ToInt32(editFuelFilter.Text));
+                sqlCommand.Parameters.AddWithValue("@AirFilter", Convert.ToInt32(editAirFilter.Text));
+                sqlCommand.Parameters.AddWithValue("@Remarks", editRemarks.Text);
+                sqlCommand.ExecuteScalar();
+                MessageBox.Show("Update Successfull", "Info");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Could not add to database");
+            }
+            finally
+            {
+                sqlConnection.Close();
             }
         }
 

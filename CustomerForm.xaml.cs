@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace CarMaintainanceSystem
 {
@@ -19,12 +22,15 @@ namespace CarMaintainanceSystem
     /// </summary>
     public partial class CustomerForm : Window
     {
+        SqlConnection sqlConnection;
         public CustomerForm()
         {
             InitializeComponent();
+            string connectionString = ConfigurationManager.ConnectionStrings["CarMaintainanceSystem.Properties.Settings.CyrusDBConnectionString"].ConnectionString;
+            sqlConnection = new SqlConnection(connectionString);
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private void ErrorrChecker()
         {
             if (editName.Text == "")
             {
@@ -57,10 +63,72 @@ namespace CarMaintainanceSystem
                 return;
             }
         }
+            
+        
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+            ErrorrChecker();
+            // saving all data
+            try
+            {
+                string query = "insert into tblCustomer (CarNo, Name, Address, Make)" +
+                " Values(@CarNo, @Name, @address, @Make)";
+                SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlConnection.Open();
+                sqlCommand.Parameters.AddWithValue("@CarNo", editCarNo.Text);
+                sqlCommand.Parameters.AddWithValue("@Name", editName.Text);
+                sqlCommand.Parameters.AddWithValue("@Address", editAddress.Text);
+                sqlCommand.Parameters.AddWithValue("@Make", editMake.Text);
+                sqlCommand.ExecuteScalar();
+                MessageBox.Show("values added to datbase");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
 
-        private void btnExit_Click(object sender, RoutedEventArgs e)
+        }
+
+        private void BtnExit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
+
+        private void BtnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            ErrorrChecker();
+            try
+            {
+                string query = "Update tblCustomer " +
+                    "set Name = @Name, Address = @Address, Make = @Make " +
+                    "Where CarNO = @CarNo";
+                SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlConnection.Open();
+                sqlCommand.Parameters.AddWithValue("@Name", editName.Text);
+                sqlCommand.Parameters.AddWithValue("@Address", editAddress.Text);
+                sqlCommand.Parameters.AddWithValue("@Make", editMake.Text);
+                sqlCommand.Parameters.AddWithValue("@CarNo", editCarNo.Text);
+                sqlCommand.ExecuteScalar();
+                MessageBox.Show("Update Successful", "Info");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+            
+        }
+
+        //private void BtnPrevious_Click(object sender, RoutedEventArgs e)
+        //{
+        //    btnPrevious.BindingContext[CyrusDBDataSet, "tblCustomer"].Postion -= 1; //CyrusDBDataSet.
+        //}
     }
 }

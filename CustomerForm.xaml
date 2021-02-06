@@ -42,35 +42,36 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Grid Margin="15" Grid.Column="0">
-                <Button Name="btnUpdate" Content="Update" FontSize="25" FontFamily="Microsoft Sans Serif"/>
-            </Grid>
             <Grid Margin="15" Grid.Column="1">
-                <Button Name="btnSave" Content="Save" FontSize="25" FontFamily="Microsoft Sans Serif" Click="btnSave_Click"/>
+                <Button Click="BtnUpdate_Click" Name="btnUpdate" Content="Update" FontSize="15" FontFamily="Microsoft Sans Serif"/>
             </Grid>
             <Grid Margin="15" Grid.Column="2">
-                <Button Name="btnEdit" Content="Edit" FontSize="25" FontFamily="Microsoft Sans Serif"/>
+                <Button Name="btnSave" Click="BtnSave_Click" Content="Save" FontSize="15" FontFamily="Microsoft Sans Serif"/>
             </Grid>
-            <Grid Margin="15" Grid.Column="3">
+            <!--<Grid Margin="15" Grid.Column="2">
+                <Button Name="btnEdit" Content="Edit" FontSize="25" FontFamily="Microsoft Sans Serif"/>
+            </Grid>-->
+            <!--<Grid Margin="15" Grid.Column="3">
                 <Button Name="Cancel" Content="Cancel" FontSize="25" FontFamily="Microsoft Sans Serif"/>
+            </Grid>-->
+            <Grid Margin="15" Grid.Column="3">
+                <Button Click="BtnExit_Click" Name="btnExit" Content="Exit" FontSize="15" FontFamily="Microsoft Sans Serif" Margin="1,0,-1,0"/>
+            </Grid>
+            <!--<Grid Margin="15" Grid.Column="0">
+                <Button Click="BtnPrevious_Click" Name="btnPrevious" Content= "&lt;" FontSize="15" FontFamily="Microsoft Sans Serif"/>
             </Grid>
             <Grid Margin="15" Grid.Column="4">
-                <Button Click="btnExit_Click" Name="btnExit" Content="Exit" FontSize="25" FontFamily="Microsoft Sans Serif" Margin="1,0,-1,0"/>
-            </Grid>
+                <Button Name="btnNext" Content=">" FontSize="15" FontFamily="Microsoft Sans Serif"/>
+            </Grid>-->
         </Grid>
 
-        <Grid Margin="25">
+        <!--<Grid Margin="25">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Grid Margin="150, 50" Grid.Column="0">
-                <Button Name="btnPrevious" Content= "&lt;" FontSize="25" FontFamily="Microsoft Sans Serif"/>
-            </Grid>
-            <Grid Margin="150, 50" Grid.Column="1">
-                <Button Name="btnNext" Content=">" FontSize="25" FontFamily="Microsoft Sans Serif"/>
-            </Grid>
-        </Grid>
+            
+        </Grid>-->
 
     </StackPanel>
 </Window>

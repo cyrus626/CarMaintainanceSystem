@@ -44,70 +44,70 @@
             </Grid>
             <Grid Margin="5" Grid.Row="2" Grid.Column="0">
                 <Label FontSize="18" x:Name="lblTuning" Foreground="BlueViolet" Content="Tuning:"/>
-                <TextBox Width="180" Height="30"/>
+                <TextBox Width="180" Height="30" Name="editTuning"/>
             </Grid>
             <Grid Margin="5" Grid.Row="2" Grid.Column="1">
                 <Label FontSize="18" x:Name="lblAlignment" Foreground="BlueViolet" Content="Alignment:"/>
-                <TextBox Width="180" Height="30"/>
+                <TextBox Width="180" Name="editAlignment" Height="30"/>
             </Grid>
             <Grid Margin="5" Grid.Row="3" Grid.Column="0">
                 <Label FontSize="18" x:Name="lblBalancing" Foreground="BlueViolet" Content="Balancing:"/>
-                <TextBox Width="180" Height="30"/>
+                <TextBox Name="editBalancing" Width="180" Height="30"/>
             </Grid>
             <Grid Margin="5" Grid.Row="3" Grid.Column="1">
                 <Label FontSize="18" x:Name="lblTires" Foreground="BlueViolet" Content="Tires:"/>
-                <TextBox Width="180" Height="30"/>
+                <TextBox x:Name="editTires" Width="180" Height="30"/>
             </Grid>
             <Grid Margin="5" Grid.Row="6" Grid.Column="0">
                 <Label FontSize="18" x:Name="lblWeights" Foreground="BlueViolet" Content="Weights:"/>
-                <TextBox Width="180" Height="30"/>
+                <TextBox Name="editWeights" Width="180" Height="30"/>
             </Grid>
             <Grid Margin="5" Grid.Row="6" Grid.Column="1">
                 <Label FontSize="18" x:Name="lblOilChanged" Foreground="BlueViolet" Content="Oil Changed:"/>
-                <TextBox Height="30" Margin="120,2,93,2"/>
+                <TextBox Name="editOilChanged" Height="30" Margin="120,2,93,2"/>
             </Grid>
             <Grid Margin="5" Grid.Row="7" Grid.Column="0">
                 <Label FontSize="18" x:Name="lblOilQty" Foreground="BlueViolet" Content="Oil Quantity:"/>
-                <TextBox Height="30" Margin="115,2,93,2"/>
+                <TextBox x:Name="editOilQty" Height="30" Margin="115,2,93,2"/>
             </Grid>
             <Grid Margin="5" Grid.Row="7" Grid.Column="1">
                 <Label FontSize="18" x:Name="lblOilFilter" Foreground="BlueViolet" Content="OilFilter:"/>
-                <TextBox Width="180" Height="30"/>
+                <TextBox Name="editOilFilter" Width="180" Height="30"/>
             </Grid>
             <Grid Margin="5" Grid.Row="8" Grid.Column="0">
                 <Label FontSize="18" x:Name="lblGearOil" Foreground="BlueViolet" Content="Gear Oil:"/>
-                <TextBox Width="180" Height="30"/>
+                <TextBox Name="editGearOil" Width="180" Height="30"/>
             </Grid>
             <Grid Margin="5" Grid.Row="8" Grid.Column="1">
                 <Label FontSize="18" x:Name="lblGearOilQty" Foreground="BlueViolet" Content="Gear Oil Qty:"/>
-                <TextBox Height="30" Margin="124,2,93,2"/>
+                <TextBox Name="editGearOilQty" Height="30" Margin="124,2,93,2"/>
             </Grid>
             <Grid Margin="5" Grid.Row="9" Grid.Column="0">
                 <Label FontSize="18" x:Name="lblPoint" Foreground="BlueViolet" Content="Point:"/>
-                <TextBox Width="180" Height="30"/>
+                <TextBox Name="editPoint" Width="180" Height="30"/>
             </Grid>
             <Grid Margin="5" Grid.Row="9" Grid.Column="1">
                 <Label FontSize="18" x:Name="lblCondenser" Foreground="BlueViolet" Content="Condenser:"/>
-                <TextBox Height="30" Margin="103,2,93,2"/>
+                <TextBox x:Name="editCondenser" Height="30" Margin="103,2,93,2"/>
             </Grid>
             <Grid Margin="5" Grid.Row="10" Grid.Column="0">
                 <Label FontSize="18" x:Name="lblPlug" Foreground="BlueViolet" Content="Plug:"/>
-                <TextBox Width="180" Height="30"/>
+                <TextBox Name="editPlug" Width="180" Height="30"/>
             </Grid>
             <Grid Margin="5" Grid.Row="11" Grid.Column="0">
                 <Label FontSize="18" x:Name="lblFuelFilter" Foreground="BlueViolet" Content="Fuel filter:"/>
-                <TextBox Width="180" Height="30"/>
+                <TextBox Name="editFuelFilter" Width="180" Height="30"/>
             </Grid>
             <Grid Margin="5" Grid.Row="11" Grid.Column="1">
                 <Label FontSize="18" x:Name="lblAirFilter" Foreground="BlueViolet" Content="Air Filter:"/>
-                <TextBox Width="180" Height="30"/>
+                <TextBox Name="editAirFilter" Width="180" Height="30"/>
             </Grid>
             <Grid Margin="5" Grid.Row="10" Grid.Column="1">
                 <Label FontSize="18" x:Name="lblPlugQty" Foreground="BlueViolet" Content="Plug Qty:"/>
-                <TextBox Width="180" Height="30"/>
+                <TextBox Name="editPlugQty" Width="180" Height="30"/>
             </Grid>
         </Grid>
-        <TextBox Width="769" Height="23">Remarks</TextBox>
+        <TextBox Name="editRemarks" Width="769" Height="23">Remarks</TextBox>
         <Grid Margin="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -125,11 +125,11 @@
                 <Button Name="btnUpdate" Click="btnUpdate_Click" Content="Update" FontSize="25" FontFamily="Microsoft Sans Serif"/>
             </Grid>
             <Grid Margin=" 15" Grid.Column="2">
-                <Button Name="btnSave" Content="Save" FontSize="25" FontFamily="Microsoft Sans Serif"/>
+                <Button Click="btnSave_Click" Name="btnSave" Content="Save" FontSize="25" FontFamily="Microsoft Sans Serif"/>
             </Grid>
-            <Grid Margin="15" Grid.Column="3">
+            <!--<Grid Margin="15" Grid.Column="3">
                 <Button Name="btnEdit" Content="Edit" FontSize="25" FontFamily="Microsoft Sans Serif"/>
-            </Grid>
+            </Grid>-->
             <Grid Margin="15" Grid.Column="4">
                 <Button Name="Cancel" Content="Cancel" FontSize="25" FontFamily="Microsoft Sans Serif"/>
             </Grid>
